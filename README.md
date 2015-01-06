@@ -1,4 +1,4 @@
-Square One
+cornerStone - PHP Version
 ==========
 
 My personal framework/workflow using Bourbon, HTML5 Boilerplate and Grunt.
