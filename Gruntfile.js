@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+
       // SASS COMPILER
       sass: {
         dist: {
@@ -12,39 +13,19 @@ module.exports = function(grunt) {
           }
         } 
       },
-      // JS HINT
-      jshint: {
-        beforeconcat: ['assets/js/main.js']
-      },
-      // CONCAT MAIN JS
+      // CONCAT JS
       concat: {
-        options: {
-          separator: ';',
-        },
-        vendor: {
-          src: ['assets/js/vendor/*.js'], // All JS in the vendor folder
-          dest: 'assets/js/vendor.min.js',
-        },
-        plugins: {
-          src: ['assets/js/plugins/*.js'], // All JS in the plugins folder
-          dest: 'assets/js/plugins.min.js',
-        },
-        main: {
-          src: ['assets/js/main.js'], // This specific file
+        dist: {
+          src: [
+            'assets/js/plugins/*.js', // All JS in the libs folder
+            'assets/js/main.js'  // This specific file
+          ],
           dest: 'assets/js/main.min.js',
         }
       },
-      // UGLIFY VENDOR JS
+      // UGLIFY JS
       uglify: {
-        vendor: {
-          src: 'assets/js/vendor.min.js',
-          dest: 'assets/js/vendor.min.js'
-        },
-        plugins: {
-          src: 'assets/js/plugins.min.js',
-          dest: 'assets/js/plugins.min.js'
-        },
-        main: {
+        build: {
           src: 'assets/js/main.min.js',
           dest: 'assets/js/main.min.js'
         }
@@ -56,15 +37,16 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'assets/img/',
             src: ['**/*.{png,jpg,gif}'],
-            dest: 'assets/img'
+            dest: 'assets/img/build'
           }]
         }
       },
+
       // WATCH TASKS & LIVE RELOADING
       watch: {
         scripts: {
-          files: ['assets/js/*.js', 'assets/js/plugins/*.js', 'assets/js/vendor/*.js'],
-          tasks: ['jshint', 'concat'],
+          files: ['assets/js/*.js', 'assets/js/plugins/*.js'],
+          tasks: ['concat', 'uglify'],
           options: {
             spawn: false,
             livereload: true,
@@ -78,14 +60,15 @@ module.exports = function(grunt) {
             livereload: true,
           }
         },
-        markup: {
-          files: ['*.php', 'so-includes/*.php'],
+        html: {
+          files: ['*.html'],
           options: {
-              spawn: false,
-              livereload: true,
+            spawn: false,
+            livereload: true,
           }
         }
       }
+
   });
 
   // LOADING ALL TASKS
@@ -95,9 +78,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imagemin']);
-  grunt.registerTask('dev', ['watch', 'jshint', 'concat']);
+  grunt.registerTask('build', ['concat', 'uglify', 'sass', 'imagemin']);
+  grunt.registerTask('dev', ['watch']);
 
 }

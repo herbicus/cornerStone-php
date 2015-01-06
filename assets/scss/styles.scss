@@ -8,12 +8,15 @@
 //   Libs
 // -------------------------------------
 
-// IMPORT NORMALIZE AND ANIMATE
+// NORMALIZE
 @import "normalize";
-@import "animate";
+
+//@import "animate";
 
 // IMPORT BOURBON
+
 @import "bourbon/bourbon";
+@import "bitters/base";
 @import "neat/neat";
 
 // -------------------------------------
@@ -46,9 +49,7 @@
 // to quickly add styles that are easily seen by the maintainer of the file.
 // -------------------------------------
 
-// body {
-// 	background: $muteBlue; 
-// }
+
 
 // -------------------------------------
 //   Shame

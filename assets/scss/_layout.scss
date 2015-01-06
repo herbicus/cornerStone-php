@@ -7,7 +7,7 @@
 *,
 *:before,
 *:after  {
-  -webkit-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
            box-sizing: border-box; 
 }
@@ -28,53 +28,13 @@
 
 .one { @include span-columns(1); }
 
-// .page-wrap {
-// 	width: 100%;
-// 	height: auto;
-// 	margin-left: auto;
-// 	margin-right: auto;
-// 	padding: 0 15px;
-// 	@include row();
-// 	@include outer-container;
-// 	@include mq(iphone) {
-// 		max-width: 320px;
-// 	}
-// 	@include mq(android) {
-// 		max-width: 480px;
-// 	}
-// 	@include mq(tablet) {
-// 		max-width: 768px;
-// 	}
-// 	@include mq(laptop) {
-// 		max-width: 960px;
-// 	}
-// 	@include mq(desktop) {
-// 		max-width: 1280px;
-// 	}
-// }
-
-html,
-body {
- font-size: 100%;
-}
-
-body, html {
-	width: 100%;
-	height: 100%;
-	min-height: 480px;
-	background: $cream;
-	margin: 0;
-	padding: 0;
-}
-
 .content-wrap {
 	width: 100%;
-	height: 100%;
-	min-height: auto;
+	height: auto;
 	margin-left: auto;
 	margin-right: auto;
+	padding: 0 15px;
 	@include row();
-	@include pad(0 10px);
 	@include outer-container;
 	@include mq(iphone) {
 		max-width: 320px;
@@ -95,7 +55,7 @@ body, html {
 
 
 // ALTERNATE RESPONSIVE GRID
-.l-container { 
+.l-row { 
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -168,7 +128,33 @@ body, html {
 	}
 }
 
-// ALTERNATE GLOBAL STYLES -BODY/HTML-
+// GLOBAL STYLES
+
+body, html {
+	width: 100%;
+	height: 100%;
+	background: $cream;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+// iPad with portrait orientation.
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+  body {
+    height: 1024px;
+  }
+}
+ 
+
+//iPad with landscape orientation.
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+  body {
+    height: 768px;
+  }
+}
 
 //body {
 //  background: $cream;
